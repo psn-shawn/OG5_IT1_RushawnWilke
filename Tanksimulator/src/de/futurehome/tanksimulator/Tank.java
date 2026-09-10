@@ -14,5 +14,6 @@ public class Tank {
 	public void setFuellstand(double fuellstand) {
 		this.fuellstand = fuellstand;
 	}
+		
 
 }

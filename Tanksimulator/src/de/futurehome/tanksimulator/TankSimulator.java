@@ -15,6 +15,7 @@ public class TankSimulator extends Frame {
 	
 	private Label lblUeberschrift = new Label("Tank-Simulator");
 	public  Label lblFuellstand = new Label("     ");
+	public  Label lblFuellstandprozent = new Label("     ");
 	
 	public Button btnBeenden = new Button("Beenden");
 	public Button btnEinfuellen = new Button("Einf�llen");
@@ -35,6 +36,7 @@ public class TankSimulator extends Frame {
 		this.lblUeberschrift.setFont(new Font("", Font.BOLD, 16));
 		this.pnlNorth.add(this.lblUeberschrift);
 		this.pnlCenter.add(this.lblFuellstand);
+		this.pnlCenter.add(this.lblFuellstandprozent);
 		this.pnlSouth.add(this.btnEinfuellen);
 		this.pnlSouth.add(this.btnVerbrauchen);
 		this.pnlSouth.add(this.btnBeenden);
