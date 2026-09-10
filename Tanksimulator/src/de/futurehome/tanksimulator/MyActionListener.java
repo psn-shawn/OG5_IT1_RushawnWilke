@@ -38,4 +38,12 @@ public class MyActionListener implements ActionListener {
 			 f.lblFuellstand.setText(""+fuellstand);
 
 	}
+		if (obj == f.btnZuruecksetzen) {
+			 double fuellstand = f.myTank.getFuellstand();
+			 fuellstand = 0;
+			 f.myTank.setFuellstand(fuellstand);
+			 
+			 f.lblFuellstand.setText(""+fuellstand);
+		}
+}
 }
