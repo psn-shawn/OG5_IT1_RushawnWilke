@@ -16,7 +16,7 @@ public class Universum {
 	 * @param width   Breite des Universums
 	 * @param height  Höhe des Universums
 	 */
-	public Universum(int width, int height) {
+	public niversum(int width, int height) {
 		this.universumBreite = width;
 		this.universumHoehe = height;
 
