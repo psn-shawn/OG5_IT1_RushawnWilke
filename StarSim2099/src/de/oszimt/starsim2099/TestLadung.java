@@ -1,6 +1,6 @@
 package de.oszimt.starsim2099;
 
-public class TestLadung {
+public class TestLadung extends OBERBOSS {
 
 	public static void main(String[] args) {
 
@@ -9,7 +9,7 @@ public class TestLadung {
 		int masse = 122;
 		String typ = "Test-Ladung (gepunktet)";
 		
-		Ladung meineLadung = new Ladung();
+		Ladung meineLadung = new Ladung(posX,posY,masse,typ);
 		meineLadung.setTyp(typ);
 		meineLadung.setMasse(masse);
 		meineLadung.setPosX(posX);
@@ -29,4 +29,8 @@ public class TestLadung {
 
 	}
 
+	public TestLadung(double posX, double posY) {
+		super(posX, posY);
+		// TODO Auto-generated constructor stub
+	}
 }

@@ -1,6 +1,9 @@
 package de.oszimt.starsim2099;
 
-public class TestRaumschiff {
+public class TestRaumschiff extends OBERBOSS {
+
+	
+	
 
 	public static void main(String[] args) {
 
@@ -12,10 +15,10 @@ public class TestRaumschiff {
 		int winkel = 123;
 
 		
-		Raumschiff meinRaumschiff = new Raumschiff();
+		Raumschiff meinRaumschiff = new Raumschiff(posX,posY,maxKapazitaet,typ,antrieb,winkel);
 		meinRaumschiff.setTyp(typ);
 		meinRaumschiff.setAntrieb(antrieb);
-		meinRaumschiff.setMaxLadekapazitaet(maxKapazitaet);
+		meinRaumschiff.setMaxKapazitaet(maxKapazitaet);
 		meinRaumschiff.setWinkel(winkel);
 		meinRaumschiff.setPosX(posX);
 		meinRaumschiff.setPosY(posY);
@@ -27,7 +30,7 @@ public class TestRaumschiff {
 		if (meinRaumschiff.getAntrieb().equals(antrieb))
 			System.out.println("Implementierung 'Antrieb' korrekt!");
 		
-		if (meinRaumschiff.getMaxLadekapazitaet() == maxKapazitaet)
+		if (meinRaumschiff.getMaxKapazitaet() == maxKapazitaet)
 			System.out.println("Implementierung 'Kapazität' korrekt!");
 		
 		if (meinRaumschiff.getWinkel() == winkel)

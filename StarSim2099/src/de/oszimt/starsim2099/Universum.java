@@ -12,11 +12,13 @@ public class Universum {
 	private char sternShape = '*';
 
 	// Konstruktor
+	
+
 	/**
 	 * @param width   Breite des Universums
 	 * @param height  Höhe des Universums
 	 */
-	public niversum(int width, int height) {
+	public Universum(int width, int height) {
 		this.universumBreite = width;
 		this.universumHoehe = height;
 

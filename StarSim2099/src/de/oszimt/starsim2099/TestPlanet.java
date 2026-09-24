@@ -1,6 +1,11 @@
 package de.oszimt.starsim2099;
 
-public class TestPlanet {
+public class TestPlanet extends OBERBOSS {
+
+	public TestPlanet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public static void main(String[] args) {
 		double posX = (double)(Math.random() * 160);
@@ -8,7 +13,7 @@ public class TestPlanet {
 		int anzahlHafen = 3;
 		String name = "Max Musterpilot";
 		
-		Planet meinPlanet = new Planet();
+		Planet meinPlanet = new Planet(posX,posY,anzahlHafen,name);
 		meinPlanet.setAnzahlHafen(anzahlHafen);
 		meinPlanet.setName(name);
 		meinPlanet.setPosX(posX);

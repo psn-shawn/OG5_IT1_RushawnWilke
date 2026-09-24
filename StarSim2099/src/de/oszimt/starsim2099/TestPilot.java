@@ -1,6 +1,11 @@
 package de.oszimt.starsim2099;
 
-public class TestPilot {
+public class TestPilot extends OBERBOSS {
+
+	public TestPilot(double posX, double posY) {
+		super(posX, posY);
+		// TODO Auto-generated constructor stub
+	}
 
 	public static void main(String[] args) {
 		double posX = (double)(Math.random() * 160);
@@ -8,7 +13,7 @@ public class TestPilot {
 		String grad = "Testpilot";
 		String name = "Max Musterpilot";
 		
-		Pilot meinPilot = new Pilot();
+		Pilot meinPilot = new Pilot(posX,posY,grad,name);
 		meinPilot.setGrad(grad);
 		meinPilot.setName(name);
 		meinPilot.setPosX(posX);
