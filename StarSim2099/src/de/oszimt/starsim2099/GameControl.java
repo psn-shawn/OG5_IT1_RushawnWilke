@@ -94,6 +94,7 @@ public class GameControl {
 			listPlaneten.remove(meinPlanet);
 		}
 	}
+
 	public void addMond(Mond meinMond) {
 		if (!listMonde.contains(meinMond)) {
 			listMonde.add(meinMond);
@@ -105,6 +106,7 @@ public class GameControl {
 			listMonde.remove(meinMond);
 		}
 	}
+
 	private void drawFrame() {
 		for (int y = 0; y < screenHeight; y++) {
 			if (y == 0 || y == screenHeight - 3 || y == screenHeight - 1) {
@@ -165,13 +167,15 @@ public class GameControl {
 		for (char[] curRow : shape) {
 			width = Math.max(curRow.length, width);
 		}
-		return new Dimension(height, width);
+		// Dimension erwartet (Breite, Hoehe)
+		return new Dimension(width, height);
 	}
 
 	private void drawStars() {
 		for (Position stern : universum.getListSterne()) {
 			Position transformedPos = transformPos(stern);
-			if (transformedPos.x >= 1 && transformedPos.y >= 1 && transformedPos.x <= 78 && transformedPos.y <= 22) {
+			if (transformedPos.x >= 1 && transformedPos.y >= 1 && transformedPos.x <= screenWidth - 2
+					&& transformedPos.y <= screenHeight - 4) {
 				meineConsole.print(transformedPos.x, transformedPos.y, universum.getSternShape(), STAR_COLOR);
 			}
 		}
@@ -191,12 +195,6 @@ public class GameControl {
 		return new Position(39 + newX - (int) raumschiff.getPosX(), 11 + newY - (int) raumschiff.getPosY());
 	}
 
-	/*
-	 * private boolean isSichtbar(int x, int y) { return (raumschiff.getPosX() -
-	 * 39 <= x && x <= raumschiff.getPosX() + 39) && (raumschiff.getPosY() - 10
-	 * <= y && y <= raumschiff.getPosY() + 10); }
-	 */
-
 	private void drawPlanet(Planet planet) {
 		int centerX = (int) planet.getPosX();
 		int centerY = (int) planet.getPosY();
@@ -204,13 +202,15 @@ public class GameControl {
 		char[][] planetShape = Planet.getDarstellung();
 		drawShape(planetShape, PLANET_COLOR, transformedPos);
 	}
+
 	private void drawMond(Mond mond) {
 		int centerX = (int) mond.getPosX();
 		int centerY = (int) mond.getPosY();
 		Position transformedPos = transformPos(new Position(centerX, centerY));
-		char[][] mondShape = Planet.getDarstellung();
+		char[][] mondShape = Mond.getDarstellung();
 		drawShape(mondShape, MOND_COLOR, transformedPos);
 	}
+
 	private void drawLadung(Ladung ladung) {
 		int centerX = (int) ladung.getPosX();
 		int centerY = (int) ladung.getPosY();
@@ -228,6 +228,7 @@ public class GameControl {
 		for (Planet planet : listPlaneten) {
 			drawPlanet(planet);
 		}
+		// Male alle Monde
 		for (Mond mond : listMonde) {
 			drawMond(mond);
 		}
@@ -240,8 +241,6 @@ public class GameControl {
 		// Male Infos
 		drawStatus();
 
-		// Male Pilot
-		// meinPilot.getPosX()
 		meineConsole.refresh();
 	}
 
@@ -260,20 +259,20 @@ public class GameControl {
 			switch (keyPressed.code) {
 
 			case CharKey.UARROW:
-				int newX = Math
-						.max(Math.min((int) (raumschiff.getPosX() - 2 * Math.sin(degToRad(raumschiff.getWinkel()))),
-								universum.getUniversumBreite()), 0);
-				int newY = Math
-						.max(Math.min((int) (raumschiff.getPosY() - 2 * Math.cos(degToRad(raumschiff.getWinkel()))),
-								universum.getUniversumHoehe()), 0);
+				int newX = Math.max(Math.min(
+						(int) Math.round(raumschiff.getPosX() - 2 * Math.sin(degToRad(raumschiff.getWinkel()))),
+						universum.getUniversumBreite()), 0);
+				int newY = Math.max(Math.min(
+						(int) Math.round(raumschiff.getPosY() - 2 * Math.cos(degToRad(raumschiff.getWinkel()))),
+						universum.getUniversumHoehe()), 0);
 				raumschiff.setPosX(newX);
 				raumschiff.setPosY(newY);
 				break;
 			case CharKey.LARROW:
-				raumschiff.setWinkel(raumschiff.getWinkel() + 5);
+				raumschiff.setWinkel((raumschiff.getWinkel() + 5) % 360);
 				break;
 			case CharKey.RARROW:
-				raumschiff.setWinkel(raumschiff.getWinkel() - 5);
+				raumschiff.setWinkel((raumschiff.getWinkel() - 5) % 360);
 				break;
 			default:
 			}
