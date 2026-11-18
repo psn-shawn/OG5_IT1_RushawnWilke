@@ -1,58 +1,58 @@
-  public static void main(String[] args) {
 
-        int[] zahlen = {
-            10, 20, 30, 40, 50,
-            60, 70, 80, 90, 100
-        };
+public class Testprotokoll {
 
-        int[] suchwerte = {
-            10, 50, 100, 80, 20,
-            55, 5, 110
-        };
+    public static void main(String[] args) {
 
-        int[] erwartetePositionen = {
-            0, 4, 9, 7, 1,
-            -1, -1, -1
-        };
+        int[] groessen = {1000, 10000, 100000, 1000000, 20000000};
 
-        int bestanden = 0;
-        int fehlgeschlagen = 0;
+        System.out.println("TESTPROTOKOLL SUCHALGORITHMEN");
+        System.out.println();
 
-        for (int i = 0; i < suchwerte.length; i++) {
+        for (int groesse : groessen) {
 
-            int gesucht = suchwerte[i];
+            long[] liste = SortedListGenerator.getSortedList(groesse);
+            long gesucht = liste[groesse - 1];
 
-            int ergebnis = interpolationssuche(
-                zahlen, gesucht
-            );
+            System.out.println("Listengroesse: " + groesse);
+            System.out.println("Gesuchte Zahl: " + gesucht);
 
-            boolean erfolgreich =
-                ergebnis == erwartetePositionen[i];
+            // Interpolationssuche
+            long start = System.nanoTime();
 
-            System.out.println("\nTest " + (i + 1));
-            System.out.println("Suchwert: " + gesucht);
-            System.out.println("Erwartete Position: "
-                    + erwartetePositionen[i]);
-            System.out.println("Gefundene Position: "
-                    + ergebnis);
+            int ergebnisInterpolation =
+                Suchalgorithmen.interpolationsSuche(liste, gesucht);
 
-            if (erfolgreich) {
-                System.out.println("Ergebnis: BESTANDEN");
-                bestanden++;
-            } else {
-                System.out.println("Ergebnis: FEHLGESCHLAGEN");
-                fehlgeschlagen++;
-            }
+            long ende = System.nanoTime();
+
+            double zeitInterpolation =
+                (ende - start) / 1_000_000.0;
+
+            // Lineare Suche
+            start = System.nanoTime();
+
+            int ergebnisLinear =
+                Suchalgorithmen.lineareSuche(liste, gesucht);
+
+            ende = System.nanoTime();
+
+            double zeitLinear =
+                (ende - start) / 1_000_000.0;
+
+            System.out.println("Interpolationssuche:");
+            System.out.println("Gefunden an Index: " + ergebnisInterpolation);
+            System.out.println("Laufzeit: " + zeitInterpolation + " ms");
+
+            System.out.println("Lineare Suche:");
+            System.out.println("Gefunden an Index: " + ergebnisLinear);
+            System.out.println("Laufzeit: " + zeitLinear + " ms");
+
+            
+
+            
         }
 
-        
-        System.out.println("Bestanden: " + bestanden);
-        System.out.println("Fehlgeschlagen: " + fehlgeschlagen);
-        System.out.println("Gesamte Tests: "
-                + (bestanden + fehlgeschlagen));
+        System.out.println("FEDDICH MIDDE TESTS!!!");
     }
-
-  private static int interpolationssuche(int[] zahlen, int gesucht) {
-	// TODO Auto-generated method stub
-	return 0;
 }
+
+
